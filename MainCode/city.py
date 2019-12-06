@@ -4,7 +4,6 @@
 # @Author: Frank1126lin
 # @Date  : 12/4/19
 
-import sys
 
 cities = {
     'bj': '北京',

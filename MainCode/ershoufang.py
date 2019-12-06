@@ -18,15 +18,14 @@ def main():
     """
     city = get_city()
     print("Your choice is:", cities[city])
-    with open('ershoufang-{0}.json'.format(city), 'w') as jsonfile:
+    with open('ershoufang-{0}.csv'.format(city), 'w') as csvfile:
         for area in get_city_area(city).keys():
             # 针对每个城市具体的区域进行分别爬取
             print("当前爬取",cities[city], get_city_area(city)[area])
             for info in spider(city, area):
                 print("Now writing:", info)
-                jsoninfo = json.dumps(info, indent=4, ensure_ascii=False)
-                jsonfile.write(jsoninfo)
-                jsonfile.write("\n")
+                csvfile.write('--'.join(info))
+                csvfile.write("\n")
 
 
 

@@ -45,7 +45,7 @@ def pg_ana(city, area, pgnum):
         desc = desc.text.replace("\n", "").strip()
         # 清理数据
         # print(price, "\n", name, "\n", desc)
-        data={"城市":cities.get(city), "区域":get_city_area(city)[area], "地址":addr, "名称":name, "价格":price, "单价":unit_price, "描述":desc, "网址":url, }
+        data=[cities.get(city), get_city_area(city)[area], addr,name, price, unit_price, desc, url]
         data_list.append(data)
     return data_list
 
