@@ -8,6 +8,7 @@ import requests
 import re
 from bs4 import BeautifulSoup
 from headers import create_headers
+from city import cities
 
 
 def get_city_area(city):
@@ -25,7 +26,7 @@ def get_city_area(city):
     soup = BeautifulSoup(html, "lxml")
     area_elements = str(soup.find_all('div', class_="position"))
     # print(area_elements)
-    area_list = re.findall(r'.*?/ershoufang/(.*?)/.*?title="苏州(.*?)在售.*?', area_elements)
+    area_list = re.findall(r'.*?/ershoufang/(.*?)/.*?title="{0}(.*?)在售.*?'.format(cities[city]), area_elements)
     for tup in area_list:
         data_dic[tup[0]]=tup[1]
     # print(data_dic)
@@ -34,4 +35,4 @@ def get_city_area(city):
 
 
 if __name__ == '__main__':
-    print(get_city_area('su'))
+    print(get_city_area('sh'))

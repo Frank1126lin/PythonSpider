@@ -35,14 +35,15 @@ def spider(city, area, random_delay=True):
 
 
 if __name__ == '__main__':
-    with open('ershoufang-xiangcheng.csv', "w") as infile:
+    with open('ershoufang--xiangcheng.json', "w") as jsonfile:
         t1 = time.time()
         count = 0
         for data in spider("su", "xiangcheng", False):
             count+=1
-            print("Now writing:", str(data))
-            infile.write(str(data))
-            infile.write('\n')
+            print("Now writing:", data)
+            jsondict = json.dumps(data, indent=4, ensure_ascii=False)
+            jsonfile.write(jsondict)
+            jsonfile.write("\n")
         t2 = time.time()
         print("used:",t2-t1,'s, total num:',count)
 
