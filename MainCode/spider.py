@@ -12,6 +12,7 @@ import random
 from city import get_city, cities
 from area import get_city_area
 from pg_ana import pg_ana
+from pg_ana_re import pg_ana_re
 from total_page import total_page
 
 
@@ -30,18 +31,18 @@ def spider(city, area, random_delay=True):
             time.sleep(random.randint(0,12))
         print("now crawling:","\n","城市", cities[city],"\n","区域",get_city_area(city)[area])
         print("current page/total page:", pgnum,'/', total_pg)
-        for item in pg_ana(city, area, pgnum):
+        for item in pg_ana_re(city, area, pgnum):
             yield item
 
 
 if __name__ == '__main__':
-    with open('ershoufang--xiangcheng.csv', "w") as infile:
+    with open('ershoufang--xiangcheng--re.csv', "w") as infile:
         t1 = time.time()
         count = 0
         for data in spider("su", "xiangcheng", False):
             count+=1
             print("Now writing:", data)
-            infile.write('--'.join(data))
+            infile.write('|'.join(data))
             infile.write("\n")
         t2 = time.time()
         print("used:",t2-t1,'s, total num:',count)
