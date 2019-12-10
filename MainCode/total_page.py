@@ -4,7 +4,7 @@
 # @Author: Frank1126lin
 # @Date  : 12/5/19
 
-import re
+import re, time
 import requests
 from bs4 import BeautifulSoup
 from headers import create_headers
@@ -16,6 +16,7 @@ def total_page(city, area):
     :param city: 城市代码
     :return: 页面数量int
     """
+    start_time = time.time()
     page = 'http://{0}.lianjia.com/ershoufang/{1}'.format(city, area)
     headers = create_headers()
     # 获取随机headers
@@ -27,6 +28,8 @@ def total_page(city, area):
         page_box = soup.find_all('div', class_='page-box')[0]
         matches = re.search('.*"totalPage":(\d+),.*', str(page_box))
         total_page = int(matches.group(1))
+        end_time = time.time()
+        print("total page used:{}s".format(end_time-start_time))
         return total_page
     except Exception as e:
         print("\tWarning: only find one page for {0}".format(city))

@@ -20,7 +20,7 @@ def pg_ana(city, area, pgnum):
     start_time = time.time()
     data_list = []
     page = 'http://{0}.lianjia.com/ershoufang/{1}/pg{2}'.format(city, area, pgnum)
-    # print(page)
+    print(page)
     headers = create_headers()
     # 获取随机headers
     response = requests.get(page, timeout=10, headers=headers)

@@ -16,7 +16,7 @@ from pg_ana_re import pg_ana_re
 from total_page import total_page
 
 
-def spider(city, area, random_delay=True):
+def spider(city, area, random_delay):
     """
     返回指定城市，指定区域的房产列表信息
     :param city: 指定城市
@@ -25,18 +25,19 @@ def spider(city, area, random_delay=True):
     """
     # 找出total-page:int
     total_pg = total_page(city, area)
+    # total_pg = 1
     # 分页爬取每页的数据
     for pgnum in range(1,total_pg+1):
         if random_delay:
-            time.sleep(random.randint(0,12))
-        print("now crawling:","\n","城市", cities[city],"\n","区域",get_city_area(city)[area])
+            time.sleep(random.randint(5,12))
+        print("now crawling:",cities[city],get_city_area(city)[area])
         print("current page/total page:", pgnum,'/', total_pg)
-        for item in pg_ana_re(city, area, pgnum):
+        for item in pg_ana(city, area, pgnum):
             yield item
 
 
 if __name__ == '__main__':
-    with open('ershoufang--xiangcheng--re.csv', "w") as infile:
+    with open('ershoufang-xiangcheng.csv', "w") as infile:
         t1 = time.time()
         count = 0
         for data in spider("su", "xiangcheng", False):
