@@ -6,10 +6,9 @@
 
 # 爬取链家指定城市所有二手房数据
 import time
-import json
 from city import get_city, cities
 from area import get_city_area
-from spider import spider
+from WebSpider.spider import spider
 
 def main():
     """

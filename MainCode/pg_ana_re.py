@@ -5,6 +5,7 @@
 # @Date  : 2019/12/5
 
 import re
+import time
 import requests
 from headers import create_headers
 from city import cities
@@ -15,6 +16,7 @@ def pg_ana_re(city, area, pgnum):
     处理单个页面的信息
     return：信息列表
     """
+    start_time = time.time()
     data_list = []
     page = 'http://{0}.lianjia.com/ershoufang/{1}/pg{2}'.format(city, area, pgnum)
     # print(page)
@@ -38,6 +40,8 @@ def pg_ana_re(city, area, pgnum):
         unitprice = i[6]
         format_data = [cities.get(city), get_city_area(city)[area],jiedao, xiaoqu, title, miaosu, price ,unitprice,url ]
         data_list.append(format_data)
+    end_time = time.time()
+    print('For this page %s, used %s s'%(page, end_time-start_time))
     return data_list
 
 if __name__ == '__main__':

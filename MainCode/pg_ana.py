@@ -5,6 +5,7 @@
 # @Date  : 2019/12/5
 
 import re
+import time
 import requests
 from bs4 import BeautifulSoup
 from headers import create_headers
@@ -16,6 +17,7 @@ def pg_ana(city, area, pgnum):
     处理单个页面的信息
     return：信息列表
     """
+    start_time = time.time()
     data_list = []
     page = 'http://{0}.lianjia.com/ershoufang/{1}/pg{2}'.format(city, area, pgnum)
     # print(page)
@@ -47,8 +49,10 @@ def pg_ana(city, area, pgnum):
         # print(price, "\n", name, "\n", desc)
         data=[cities.get(city), get_city_area(city)[area], addr,name, price, unit_price, desc, url]
         data_list.append(data)
+    end_time = time.time()
+    print("For this page %s , used %s s"%(page, end_time-start_time))
     return data_list
 
 if __name__ == '__main__':
-    for i in pg_ana("su", "gaoxin1", 2):
+    for i in pg_ana("su", "xiangcheng", 1):
         print(i)
