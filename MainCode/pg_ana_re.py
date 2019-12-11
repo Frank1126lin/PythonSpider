@@ -38,7 +38,7 @@ def pg_ana_re(city, area, pgnum):
         miaosu = i [4]
         price = i[5]
         unitprice = i[6]
-        format_data = {"城市":cities.get(city), "地区":get_city_area(city)[area],"街道":jiedao, "小区":xiaoqu, "标题":title, "描述":miaosu, "总价":price ,"单价":unitprice,"网址":url }
+        format_data = [cities.get(city), get_city_area(city)[area],jiedao, xiaoqu, title, miaosu, price ,unitprice,url ]
         data_list.append(format_data)
     end_time = time.time()
     print('For this page %s, used %s s'%(page, end_time-start_time))

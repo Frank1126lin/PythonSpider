@@ -7,7 +7,6 @@
 
 
 import time
-import json
 import random
 from city import get_city, cities
 from area import get_city_area
@@ -32,7 +31,7 @@ def spider(city, area, random_delay):
             time.sleep(random.randint(5,12))
         print("now crawling:",cities[city],get_city_area(city)[area])
         print("current page/total page:", pgnum,'/', total_pg)
-        for item in pg_ana(city, area, pgnum):
+        for item in pg_ana_re(city, area, pgnum):
             yield item
 
 
