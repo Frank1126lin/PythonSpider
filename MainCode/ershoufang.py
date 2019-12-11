@@ -26,7 +26,7 @@ def write_to_csv(city, area, random_delay):
     print('Now writing {0}|{1}'.format(city_ch, area_ch), 'to csv')
     with open('ershoufang-{0}-{1}.csv'.format(city_ch, area_ch), 'w') as csvfile:
         for info in spider(city, area, random_delay):
-            print("Now wrting:", '|'.join(info[0:4]))
+            print("Now wrting:", '|'.join(info[0:5]))
             csvfile.write('|'.join(info))
             csvfile.write("\n")
 
