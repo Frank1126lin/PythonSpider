@@ -69,7 +69,7 @@ def main():
             next_button.click()
         # 将data存储到df中
         df = pd.DataFrame(data)
-        df.to_csv('data-dongwang-{}.csv'.format(time.strftime("%Y%m%d%H%M%S")), index=False)
+        df.to_csv(f'data-{keys}-{time.strftime("%Y%m%d%H%M%S")}.csv', index=False)
 
     finally:
         browser.close()
